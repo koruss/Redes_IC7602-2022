@@ -3,9 +3,12 @@ import scipy.io.wavfile as waves
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.fftpack as fourier
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
+NavigationToolbar2Tk)
 
 filename = "recording1.wav"
-winsound.PlaySound(filename,winsound.SND_FILENAME)
+#winsound.PlaySound(filename,winsound.SND_FILENAME)# play the selected file 
 
 
 Fs,data = waves.read(filename)
@@ -32,3 +35,16 @@ plt.plot(F,M_gk)
 plt.xlabel('Frecuencia', fontsize='14')
 plt.ylabel('Amplitud FFT', fontsize='14')
 plt.show()
+
+
+def plot(root):
+    winsound.PlaySound(filename,winsound.SND_FILENAME)# play the selected file 
+    canvas = FigureCanvasTkAgg(fig, master = root)
+    canvas.draw()
+    canvas.get_tk_widget().pack()
+    # creating the Matplotlib toolbar
+    toolbar = NavigationToolbar2Tk(canvas,root)
+    toolbar.update()
+    # placing the toolbar on the Tkinter window
+    canvas.get_tk_widget().pack()
+

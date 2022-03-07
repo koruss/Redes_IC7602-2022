@@ -13,3 +13,4 @@ sd.wait()
 write("recording0.wav", freq, recording) 
   
 wv.write("recording1.wav", recording, freq, sampwidth=2)
+

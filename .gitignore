@@ -131,3 +131,7 @@ dmypy.json
 pyvenv.cfg
 
 Scripts/
+
+recording0.wav
+
+recording1.wav
