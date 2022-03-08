@@ -15,8 +15,12 @@ Este trabajo utiliza varias bibliotecas que son necesarias de instalar para hace
     > pip install matplotlib
 - Instalar la biblioteca wavio
     > pip install wavio
+- Instalar pyaudio
+    > pip install PyAudio-0.2.11-cp310-cp310-win_amd64.whl
 
 
 Los links que estoy usando para guiarme:
 https://www.geeksforgeeks.org/how-to-embed-matplotlib-charts-in-tkinter-gui/
 https://www.youtube.com/watch?v=AShHJdSIxkY
+
+https://pythonprogramming.altervista.org/recording-your-voice-with-sounddevice/
