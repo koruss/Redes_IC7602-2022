@@ -1,21 +1,53 @@
-from prueba import *
-from tkinter import *
-from tkinter import ttk
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
+from GUIcontroller import *
+from recorder import *
+from tkinter import *
+import tkinter as tk
+from Fourier import *
 
 
 
 rec = Recorder(channels=2)
-isStopped = False
-with rec.open('nonblocking.wav', 'wb') as recfile:  
-    root = Tk()
-    root.title("TAREA CORTA 1 - REDES")
-    root.geometry('1366x768')
-    rec
-    ttk.Label(root, text="Autrum").grid(column=0, row=0)
-    ttk.Button(root, text="Record", command=recfile.start_recording).grid(column=2, row=0)
-    ttk.Button(root, text="Pause", command=recfile.stop_recording).grid(column=3, row=0)
-    ttk.Button(root, text="Continue", command=recfile.start_recording).grid(column=4, row=0)
-    ttk.Button(root, text="End", command=recfile.close).grid(column=5, row=0)
-    root.mainloop()
+controller = Controller()
+
+
+root = Tk()
+root.title("TAREA CORTA 1 - REDES")
+root.geometry('1366x768')
+frame = Frame(root, bg = "red")
+frame.pack(expand=1, fill=BOTH)
+
+tk.Button(root, text="Record", command= controller.start_recording).pack()
+tk.Button(root, text="Pause", command=controller.pause).pack()
+tk.Button(root, text="Continue", command=controller.start).pack()
+tk.Button(root, text="End", command=controller.record).pack()
+tk.Button(root, text="Fourier", command=lambda: controller.mostrarFourier(frame)).pack()
+
+# fig,ax = plt.subplots()
+# x = np.arange(0,2*1024,2)
+# line, = ax.plot(x, np.random.rand(1024),'r')
+# ax.set_ylim(-32770,32770)
+# ax.ser_xlim = (0,1024)
+# fig.show()
+
+
+
+# Esta es la forma correcta de trabajar 
+
+# figure = Figure(figsize=(6, 4), dpi=100)
+# graphic = figure.add_subplot(111)
+# plt.show()
+  
+# array = fouriercito.fourierArray()
+# graphic.plot(array)
+# canvas = FigureCanvasTkAgg(figure, frame)
+# canvas.draw()
+#canvas.get_tk_widget().pack(side = BOTTOM, fill = BOTH, expand = True)
+#label1 = tk.Label(frame, text="FASDADADADASDADAD")
+
+#label1.place(relx = 0.0,rely = 1.0,anchor ='sw')
+
+
+root.mainloop()
+
+

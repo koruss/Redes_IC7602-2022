@@ -14,8 +14,6 @@ Non-blocking mode (start and stop recording):
 '''
 import pyaudio
 import wave
-import threading
-import keyboard
 
 class Recorder(object):
     '''A recorder class for recording audio to a WAV file.
@@ -96,7 +94,8 @@ class RecordingFile(object):
         wavefile.setframerate(self.rate)
         return wavefile
 
-
+    def hear(self):
+        return self.stream.read(self.frames_per_buffer)
 
 # rec = Recorder(channels=2)
 # with rec.open('nonblocking.wav', 'wb') as recfile:  
