@@ -16,6 +16,9 @@ frame = Frame(root, bg = "red")
 frame.pack(expand=1, fill=BOTH)
 
 
+
+
+
 label = tk.Label(root, bg = "red", text="Grabe un audio!",font=('Helvetica bold',20),
 anchor="center")
 label.place(x=350,y=375)
@@ -25,7 +28,7 @@ recordB = ttk.Button(root, text="Record", command=lambda:[message(1)])
 pauseB = ttk.Button(root, text="Pause", command= lambda:[message(2)])
 continueB = ttk.Button(root, text="Continue", command= lambda:[message(3)])
 endB = ttk.Button(root, text="End", command= lambda:[message(4)])
-hearB = ttk.Button(root, text="Hear", command=lambda:[message(5)])
+hearB = ttk.Button(root, text="Hear", command= lambda:message(5))
 fourierB = ttk.Button(root, text="Fourier", command=lambda:[controller.mostrarFourier(frame,label)])
 
 
@@ -55,8 +58,7 @@ def message(val):
         label["text"] = "Audio guardado!"
         controller.record()
     else:
-        label.place(x=370, y=375)
-        label["text"] = "Reproduciendo.."
+        label["text"] = "Reproducido!"
         controller.hear()
 
 # fig,ax = plt.subplots()

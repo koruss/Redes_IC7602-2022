@@ -54,6 +54,12 @@ class Graphic(object):
     def fourierArray(self):
         arrayFourier = fourier.fft(self.audio_m)     #Aplicamos Fourier sobre el vector donde guardamos el audio
         arrayFourier = abs(arrayFourier)        #Sacamos el valor absoluto luego de aplicar Fourier
-        arrayFourier = arrayFourier[0:self.largo//2] #Tomamos la mitad porque son 2 iguales y solo nos interesa tomar una
+        arrayFourier = arrayFourier[0:self.largo//100] #Tomamos la mitad porque son 2 iguales y solo nos interesa tomar una
         return arrayFourier
+
+    def fourierArray2(self):
+        return self.audio_m
+
+
+
 
