@@ -44,7 +44,7 @@ class Graphic(object):
         self.data = list(flatten(self.data))
         self.audio_m = self.data[:len(self.data)]
         self.largo =  len(self.audio_m)
-        self.fourierData = self.fourierArray  
+        self.fourierData = self.fourierArray
         
     def openWav(self):
         Fs,data = waves.read(filename)

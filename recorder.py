@@ -14,6 +14,8 @@ Non-blocking mode (start and stop recording):
 '''
 import pyaudio
 import wave
+import sounddevice as sd
+import soundfile as sf
 
 class Recorder(object):
     '''A recorder class for recording audio to a WAV file.
@@ -30,7 +32,7 @@ class Recorder(object):
                             self.frames_per_buffer)
 
 class RecordingFile(object):
-    def __init__(self, fname, mode, channels, 
+    def __init__(self, fname, mode, channels,
                 rate, frames_per_buffer):
         self.fname = fname
         self.mode = mode
@@ -95,7 +97,12 @@ class RecordingFile(object):
         return wavefile
 
     def hear(self):
-        return self.stream.read(self.frames_per_buffer)
+        filename = 'nonblocking.wav'
+        # Extract data and sampling rate from file
+        data, fs = sf.read(filename, dtype='float32')
+        sd.play(data, fs)
+        status = sd.wait()  # Wait until file is done playing
+
 
 # rec = Recorder(channels=2)
 # with rec.open('nonblocking.wav', 'wb') as recfile:  
