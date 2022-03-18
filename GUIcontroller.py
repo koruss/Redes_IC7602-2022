@@ -8,6 +8,10 @@ import pickle
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
+import sounddevice as sd
+import soundfile as sf
+
+
 class Controller(object):
 
     def __init__(self):
@@ -56,8 +60,8 @@ class Controller(object):
             canvas2.draw()
             canvas2.get_tk_widget().place(x=100, y=350)
 
-
-            listatm = [self.recorder,array,array2]
+            data, fs = sf.read('nonblocking.wav', dtype='float32')
+            listatm = [data,fs,array,array2]
             fileatm = open("autrum.atm","wb")
             pickle.dump(listatm,fileatm)
             fileatm.close()

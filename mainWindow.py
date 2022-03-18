@@ -1,6 +1,7 @@
 
 from GUIcontroller import *
 from recorder import *
+from Reproductor import *
 from tkinter import *
 import tkinter as tk
 from Fourier import *
@@ -8,7 +9,7 @@ from tkinter import ttk
 
 rec = Recorder(channels=2)
 controller = Controller()
-
+DeserializarController = DeserializarController()
 root = Tk()
 root.title("TAREA CORTA 1 - REDES")
 root.geometry('900x768')
@@ -29,21 +30,24 @@ pauseB = ttk.Button(root, text="Pause", command= lambda:[message(2)])
 continueB = ttk.Button(root, text="Continue", command= lambda:[message(3)])
 endB = ttk.Button(root, text="End", command= lambda:[message(4)])
 hearB = ttk.Button(root, text="Hear", command= lambda:message(5))
+atmB = ttk.Button(root, text=".atm", command= lambda:message(6))
 fourierB = ttk.Button(root, text="Fourier", command=lambda:[controller.mostrarFourier(frame,label)])
 
 
-recordB.place(x=110,y=700)
-pauseB.place(x=220,y=700)
-continueB.place(x=330,y=700)
-endB.place(x=440,y=700)
-hearB.place(x=550,y=700)
-fourierB.place(x=660,y=700)
+recordB.place(x=50,y=700)
+pauseB.place(x=125,y=700)
+continueB.place(x=200,y=700)
+endB.place(x=275,y=700)
+hearB.place(x=400,y=700)
+fourierB.place(x=700,y=700)
+
+atmB.place(x=775,y=700)
 
 
 def message(val):
-    for widgets in frame.winfo_children():
-        widgets.destroy()
     if val == 1:
+        for widgets in frame.winfo_children():
+            widgets.destroy()
         label.place(x=400,y=375)
         label["text"] = "Grabando.."
         controller.start_recording()
@@ -57,9 +61,11 @@ def message(val):
         label.place(x=370, y=375)
         label["text"] = "Audio guardado!"
         controller.record()
-    else:
+    elif val == 5:
         label["text"] = "Reproducido!"
         controller.hear()
+    else:
+        DeserializarController.Deserializar(label)
 
 # fig,ax = plt.subplots()
 # x = np.arange(0,2*1024,2)
