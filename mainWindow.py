@@ -7,91 +7,61 @@ import tkinter as tk
 from Fourier import *
 from tkinter import ttk
 
-rec = Recorder(channels=2)
-controller = Controller()
-DeserializarController = DeserializarController()
+class MainGUI:
+    def __init__(self, root):
+        self.root= root 
+        self.root.title("TAREA CORTA 1 - REDES") # Se setea la pantalla principal 
+        self.root.geometry('900x768')
+        self.root.resizable(False, False)
+
+        self.frame = Frame(root, bg = "red")
+        self.frame.pack(expand=1, fill=BOTH)
+        self.label = tk.Label(root, bg = "red", text="Grabe un audio!",font=('Helvetica bold',20), # Se setea un label para representar los estado de la app
+        anchor="center")
+        self.label.place(x=350,y=375)
+
+        self.recordB = ttk.Button(root, text="Record", command=lambda:[self.message(1)])
+        self.pauseB = ttk.Button(root, text="Pause", command= lambda:[self.message(2)])
+        self.continueB = ttk.Button(root, text="Continue", command= lambda:[self.message(3)])
+        self.endB = ttk.Button(root, text="End", command= lambda:[self.message(4)])
+        self.hearB = ttk.Button(root, text="Hear", command= lambda:self.message(5))
+        self.atmB = ttk.Button(root, text=".atm", command= lambda:self.message(6))
+        self.fourierB = ttk.Button(root, text="Fourier", command=lambda:[self.controller.mostrarFourier(self.frame,self.label)])
+
+        self.recordB.place(x=50,y=700)
+        self.pauseB.place(x=125,y=700)
+        self.continueB.place(x=200,y=700)
+        self.endB.place(x=275,y=700)
+        self.hearB.place(x=400,y=700)
+        self.fourierB.place(x=700,y=700)
+        self.atmB.place(x=775,y=700)
+
+        self.controller = Controller()
+        self.DeserializarController = DeserializarController()
+
+    def message(self,val):
+        if val == 1:
+            for widgets in self.frame.winfo_children():
+                widgets.destroy()
+            self.label.place(x=400,y=375)
+            self.label["text"] = "Grabando.."
+            self.controller.start_recording()
+        elif val == 2:
+            self.label["text"] = "Pausado!"
+            self.controller.pause()
+        elif val == 3:
+            self.label["text"] = "Grabando.."
+            self.controller.start()
+        elif val == 4:
+            self.label.place(x=370, y=375)
+            self.label["text"] = "Audio guardado!"
+            self.controller.record()
+        elif val == 5:
+            self.label["text"] = "Reproducido!"
+            self.controller.hear()
+        else:
+            self.DeserializarController.Deserializar(self.frame)
+
 root = Tk()
-root.title("TAREA CORTA 1 - REDES")
-root.geometry('900x768')
-frame = Frame(root, bg = "red")
-frame.pack(expand=1, fill=BOTH)
-
-
-
-
-
-label = tk.Label(root, bg = "red", text="Grabe un audio!",font=('Helvetica bold',20),
-anchor="center")
-label.place(x=350,y=375)
-
-
-recordB = ttk.Button(root, text="Record", command=lambda:[message(1)])
-pauseB = ttk.Button(root, text="Pause", command= lambda:[message(2)])
-continueB = ttk.Button(root, text="Continue", command= lambda:[message(3)])
-endB = ttk.Button(root, text="End", command= lambda:[message(4)])
-hearB = ttk.Button(root, text="Hear", command= lambda:message(5))
-atmB = ttk.Button(root, text=".atm", command= lambda:message(6))
-fourierB = ttk.Button(root, text="Fourier", command=lambda:[controller.mostrarFourier(frame,label)])
-
-
-recordB.place(x=50,y=700)
-pauseB.place(x=125,y=700)
-continueB.place(x=200,y=700)
-endB.place(x=275,y=700)
-hearB.place(x=400,y=700)
-fourierB.place(x=700,y=700)
-
-atmB.place(x=775,y=700)
-
-
-def message(val):
-    if val == 1:
-        for widgets in frame.winfo_children():
-            widgets.destroy()
-        label.place(x=400,y=375)
-        label["text"] = "Grabando.."
-        controller.start_recording()
-    elif val == 2:
-        label["text"] = "Pausado!"
-        controller.pause()
-    elif val == 3:
-        label["text"] = "Grabando.."
-        controller.start()
-    elif val == 4:
-        label.place(x=370, y=375)
-        label["text"] = "Audio guardado!"
-        controller.record()
-    elif val == 5:
-        label["text"] = "Reproducido!"
-        controller.hear()
-    else:
-        DeserializarController.Deserializar(label)
-
-# fig,ax = plt.subplots()
-# x = np.arange(0,2*1024,2)
-# line, = ax.plot(x, np.random.rand(1024),'r')
-# ax.set_ylim(-32770,32770)
-# ax.ser_xlim = (0,1024)
-# fig.show()
-
-
-
-# Esta es la forma correcta de trabajar 
-
-# figure = Figure(figsize=(6, 4), dpi=100)
-# graphic = figure.add_subplot(111)
-# plt.show()
-  
-# array = fouriercito.fourierArray()
-# graphic.plot(array)
-# canvas = FigureCanvasTkAgg(figure, frame)
-# canvas.draw()
-#canvas.get_tk_widget().pack(side = BOTTOM, fill = BOTH, expand = True)
-#label1 = tk.Label(frame, text="FASDADADADASDADAD")
-
-#label1.place(relx = 0.0,rely = 1.0,anchor ='sw')
-
-
+gui = MainGUI(root)
 root.mainloop()
-
-

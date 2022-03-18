@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import scipy.fftpack as fourier
 from pandas.core.common import flatten
 
-filename = "nonblocking.wav"
+#filename = "nonblocking.wav"
 # print(filename)
 # winsound.PlaySound(filename,winsound.SND_FILENAME)
 
@@ -47,7 +47,7 @@ class Graphic(object):
         self.fourierData = self.fourierArray
         
     def openWav(self):
-        Fs,data = waves.read(filename)
+        Fs,data = waves.read(self.filename)
         self.rate = Fs
         self.data = data
   
