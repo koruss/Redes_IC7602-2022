@@ -31,7 +31,7 @@ Una serie de Fourier se puede visualizar como una serie de componentes sinusoida
 ## Descripción de la solución
 La solución se realizó en el lenguaje de programación Python bajo el paradigma orientado a objetos, donde se siguió el siguiente diagrama de clases:
 
-![avatar](/Users/luis/Downloads/photo5019408045976955563.jpg)
+![diagrama](diagrama.jpg)
 
 El main es el que contiene los distintos componentes de la aplicación, tales como botones, labels, panel, etc. desde este archivo se llama al controlador encargado 
 de ejecutar cada acción dependiendo del botón que se clickea.
