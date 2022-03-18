@@ -104,25 +104,5 @@ class RecordingFile(object):
         status = sd.wait()  # Wait until file is done playing
 
 
-# rec = Recorder(channels=2)
-# with rec.open('nonblocking.wav', 'wb') as recfile:  
-#     recfile.start_recording()
-#     print("Press S to start recording ")
-#     print("Press P to pause recording ")
-#     print("Press S to start recording ")
-#     while True:
-#         if keyboard.is_pressed("p"):
-#             print("Pausing")
-#             recfile.stop_recording()
-#         if keyboard.is_pressed("c"):
-#             print("Resuming Recording")
-#             recfile.start_recording()
-            
-#         if keyboard.is_pressed("q"):
-#             print("stop")
-#             recfile.stop_recording()
-#             recfile.close()
-#             break
-
             
         

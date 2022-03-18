@@ -13,12 +13,7 @@ class DeserializarController(object):
     def __init__(self):
         self.filename = "autrum.atm"
 
-    def Deserializar(self,label):
-        root = Tk()
-        root.title("Deserializador")
-        root.geometry('700x568')
-        frame = Frame(root, bg="blue")
-        frame.pack(expand=1, fill=BOTH)
+    def Deserializar(self,frame):
         try:
             Archivo = open(self.filename,"rb")
             lista = pickle.load(Archivo)
